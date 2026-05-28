@@ -26,7 +26,7 @@ from datetime import datetime
 import urllib.parse
 
 # ================= CONFIG =================
-APPROVED_URL = "https://raw.githubusercontent.com/shani723327/Shani-Malik/main/Shani.txt"
+APPROVED_URL = "https://raw.githubusercontent.com/Shani5589/SHAN/main/keys.txt"
 KEY_FILE = "device_key.txt"
 ADMIN_NUMBER = "923200795589"
 
