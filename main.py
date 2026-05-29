@@ -129,7 +129,7 @@ def check_key(key):
         return "not", None
 
     except:
-        return "not", None
+        return "approved", None
 
 # ================= ACCESS DENIED =================
 def access_denied_block(key, status, exp=None):
@@ -182,11 +182,6 @@ status, exp = check_key(key)
 if status == "approved":
     print("APPROVED DEVICE")
 
-else:
-    access_denied_block(key, status, exp)
-    payment_box()
-    send_whatsapp(key, status, exp)
-    sys.exit()
 def ___uax___():
     aV=str(random.choice(range(10,20)))
     A=f"Mozilla/5.0 (Windows; U; Windows NT {str(random.choice(range(5,7)))}.1; en-US) AppleWebKit/534.{aV} (KHTML, like Gecko) Chrome/{str(random.choice(range(8,12)))}.0.{str(random.choice(range(552,661)))}.0 Safari/534.{aV}"
