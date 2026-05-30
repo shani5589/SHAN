@@ -457,7 +457,7 @@ def _____old2016_____():
     print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
     linex()
     limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
-    prefixes = ['1000']
+    prefixes = ['10004']
     for _ in range(int(limit)):
         prefix = random.choice(prefixes)
         suffix = ''.join(random.choices('123456789', k=10))
