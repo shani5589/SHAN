@@ -350,11 +350,13 @@ def WEHSHI________():
     print(f"\033[1;90m[\033[1;97m1\033[1;90m]\033[0;97m 2010 - 2012")
     print(f"\033[1;90m[\033[1;97m2\033[1;90m]\033[0;97m 2009 - 2010")
     print(f"\033[1;90m[\033[1;97m3\033[1;90m]\033[0;97m 2011 - 2014")
+	print(f"\033[1;90m[\033[1;97m3\033[1;90m]\033[0;97m Crack 2016")
     print(f"\x1b[1;90m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\033[0;97m") 
     option = input(f"\033[1;90m[\033[1;97m?\033[1;90m]\033[0;97m Enter Your Choice: ")
     if option == "1":os.system('xdg-open https://www.facebook.com/Wehshi11');__2010___2011()
     elif option == "2":os.system('xdg-open https://www.facebook.com/Wehshi11');____old2009___()
     elif option == "3":os.system('xdg-open https://www.facebook.com/Wehshi11');_____old2011_____()
+	elif option == "4":os.system('xdg-open https://www.facebook.com/Wehshi11');_____old2016_____()
     else:
         print(f"{red}[!] Invalid choice..."); WEHSHI________()
 
@@ -425,7 +427,35 @@ def _____old2011_____():
         
         uid = prefix + suffix
         user.append(uid)
-    with ShaniXD(max_workers=30) as Shani:
+    with ShaniXD(max_workers=35) as Shani:
+        clear()
+        total_ids = int(limit)
+        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{total_ids}")
+        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
+        linex()
+        for uid in user:
+            Shani.submit(____old____, uid,total_ids)
+
+    print('');linex();print(f"\n{green} Cloning Session Complete")
+    print(f"{white}➤ Total OK: {green}{len(oks)}")
+    
+    linex()
+    exit()
+
+#---------------------------[ 2016 CLONING ]---------------------------#
+def _____old2016_____():
+    clear()
+    print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
+    linex()
+    limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
+    prefixes = ['1000']
+    for _ in range(int(limit)):
+        prefix = random.choice(prefixes)
+        suffix = ''.join(random.choices('123456789', k=10))
+        
+        uid = prefix + suffix
+        user.append(uid)
+    with ShaniXD(max_workers=35) as Shani:
         clear()
         total_ids = int(limit)
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{total_ids}")
