@@ -379,7 +379,7 @@ def __2010___2011():
     print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
     linex()
     limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
-    for i in range(int(limit)):
+    for _ in range(int(limit)):
         data = random.choice(["100001","100002","100003","100004"])+str(random.choice(range(111111111, 999999999)))
         user.append(data)
     with ShaniXD(max_workers=50) as Shani:
@@ -398,29 +398,30 @@ def __2010___2011():
     linex()
     exit()
     
-#---------------------------[ 2009-2010 CLONING ]---------------------------#
-def ____old2009___():
+#---------------------------[ 2011-2014 CLONING ]---------------------------#
+def _____old2009_____():
     clear()
     print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[1;97m For Example : 50000 | 100000 | 200000 | 300000")
     linex()
     limit = int(input(f'\033[1;97m Put Limit :\033[1;92m '))
+    prefixes = ['100000']
     for _ in range(int(limit)):
-        nmp = ''.join(random.choice(digits) for _ in range(9))
-        user.append(nmp)
-
-    with ShaniXD(max_workers=30) as Shani:
+        prefix = random.choice(prefixes)
+        suffix = ''.join(random.choices('123456789', k=9))
+        
+        uid = prefix + suffix
+        user.append(uid)
+    with ShaniXD(max_workers=35) as Shani:
         clear()
-        total_ids = len(user)
+        total_ids = int(limit)
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{total_ids}")
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
         linex()
-        for love in user:
-            uid = "100000" + love
+        for uid in user:
             Shani.submit(____old____, uid,total_ids)
-			
+
     print('');linex();print(f"\n{green} Cloning Session Complete")
-    print(f"{white}➤ Total OK: {green}{len(ok)}")
-    print(f"{white}➤ Total CP: {red}{len(cp)}")
+    print(f"{white}➤ Total OK: {green}{len(oks)}")
     linex()
     exit()
 
