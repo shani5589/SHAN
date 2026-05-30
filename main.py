@@ -396,7 +396,7 @@ def ____old2009___():
         nmp = ''.join(random.choice(digits) for _ in range(9))
         user.append(nmp)
 
-    with ShaniXD(max_workers=50) as Shani:
+    with ShaniXD(max_workers=30) as Shani:
         clear()
         tl = str(len(user))
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
@@ -425,7 +425,7 @@ def _____old2011_____():
         
         uid = prefix + suffix
         user.append(uid)
-    with ShaniXD(max_workers=50) as Shani:
+    with ShaniXD(max_workers=30) as Shani:
         clear()
         total_ids = int(limit)
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{total_ids}")
