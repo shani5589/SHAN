@@ -373,7 +373,7 @@ def __2010___2011():
     with ShaniXD(max_workers=50) as Shani:
         total_ids = int(limit)
         clear()
-        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
+        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{total_ids}")
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
         linex()
         for mal in user:
@@ -399,7 +399,7 @@ def ____old2009___():
     with ShaniXD(max_workers=30) as Shani:
         clear()
         total_ids = len(user)
-        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{tl}")
+        print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m TOTAL IDS : \033[92m{total_ids}")
         print(f"\033[1;90m⌠\033[1;97m=\033[1;90m⌡\033[0;97m USE 1.1.1.1 VPN FOR BEST RESULT")
         linex()
         for love in user:
