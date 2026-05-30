@@ -346,19 +346,19 @@ def creationyear(uid):
         	
 #---------------------------[ MAIN MENU ]---------------------------#
 def WEHSHI________():
-    clear()
-    print(f"\033[1;90m[\033[1;97m1\033[1;90m]\033[0;97m 2010 - 2012")
-    print(f"\033[1;90m[\033[1;97m2\033[1;90m]\033[0;97m 2009 - 2010")
-    print(f"\033[1;90m[\033[1;97m3\033[1;90m]\033[0;97m 2011 - 2014")
+	clear()
+	print(f"\033[1;90m[\033[1;97m1\033[1;90m]\033[0;97m 2010 - 2012")
+	print(f"\033[1;90m[\033[1;97m2\033[1;90m]\033[0;97m 2009 - 2010")
+	print(f"\033[1;90m[\033[1;97m3\033[1;90m]\033[0;97m 2011 - 2014")
 	print(f"\033[1;90m[\033[1;97m4\033[1;90m]\033[0;97m 2016 accoun")
-    print(f"\x1b[1;90m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\033[0;97m") 
-    option = input(f"\033[1;90m[\033[1;97m?\033[1;90m]\033[0;97m Enter Your Choice: ")
+	print(f"\x1b[1;90m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\033[0;97m") 
+	option = input(f"\033[1;90m[\033[1;97m?\033[1;90m]\033[0;97m Enter Your Choice: ")
     if option == "1":os.system('xdg-open https://www.facebook.com/Wehshi11');__2010___2011()
     elif option == "2":os.system('xdg-open https://www.facebook.com/Wehshi11');____old2009___()
-    elif option == "3":os.system('xdg-open https://www.facebook.com/Wehshi11');_____old2011_____()
-		elif option == "4":os.system('xdg-open https://www.facebook.com/Wehshi11');_____old2016_____()
-    else:
-        print(f"{red}[!] Invalid choice..."); WEHSHI________()
+	elif option == "3":os.system('xdg-open https://www.facebook.com/Wehshi11');_____old2011_____()
+	elif option == "4":os.system('xdg-open https://www.facebook.com/Wehshi11');_____old2016_____()
+	else:
+		print(f"{red}[!] Invalid choice..."); WEHSHI________()
 
 
 #---------------------------[ 2010-2011 CLONING ]---------------------------#
@@ -438,7 +438,6 @@ def _____old2011_____():
 
     print('');linex();print(f"\n{green} Cloning Session Complete")
     print(f"{white}➤ Total OK: {green}{len(oks)}")
-    
     linex()
     exit()
 
@@ -466,7 +465,6 @@ def _____old2016_____():
 
     print('');linex();print(f"\n{green} Cloning Session Complete")
     print(f"{white}➤ Total OK: {green}{len(oks)}")
-    
     linex()
     exit()
     
